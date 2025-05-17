@@ -7,8 +7,8 @@ const HeroSection = () => {
     <div className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-[80vh] bg-[#EDE9E0] px-6 sm:px-12 lg:px-24 xl:px-40 2xl:px-60 py-16 gap-12">
 
       {/* Text Section */}
-      <div className="w-full lg:w-1/2 space-y-10 text-center 2xl:px- lg:text-left">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl  font-Playfair font-extrabold text-gray-800 leading-tight tracking-tight">
+      <div className="w-full lg:w-1/2 space-y-10 text-center  lg:text-left">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl  font-Playfair font-extrabold text-gray-800 leading-tight tracking-tight">
           Make Polls, See Charts, Share Insights
         </h1>
         <div className="space-y-4">
