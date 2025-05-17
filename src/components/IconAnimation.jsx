@@ -42,14 +42,14 @@ useEffect(() => {
  
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden w-full md:w-[280px] h-[140px]">
+    <div className="relative flex text-3xl items-center justify-center overflow-hidden w-full md:w-[280px] h-[140px]">
       {images.map((item, i) => {
         const pos = (i - index + images.length) % images.length;
 
         return (
           <motion.div
             key={i}
-            className={`absolute w-[90px] h-[90px] rounded-full flex items-center justify-center ${item.color} bg-white shadow-md`}
+            className={`absolute w-[100px] h-[100px] rounded-full flex items-center justify-center ${item.color} bg-white shadow-md`}
             style={{ zIndex: images.length - pos }}
             animate={{
               x: pos * 50 - 75,
