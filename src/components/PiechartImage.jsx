@@ -1,4 +1,3 @@
-// PieChartComponent.jsx
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const data = [
@@ -12,7 +11,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const PieChartImage = ({ className = "" }) => {
   return (
-    <div className={`w-full max-w-[700px] aspect-square ${className}`}>
+    <div className={`aspect-square ${className}`}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -38,3 +37,5 @@ const PieChartImage = ({ className = "" }) => {
 };
 
 export default PieChartImage;
+
+

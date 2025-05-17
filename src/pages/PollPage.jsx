@@ -16,8 +16,8 @@ const PollPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-xl bg-white p-6 rounded-xl shadow-lg">
+    <div className="min-[vh] h-full w-full min-w-[vw] flex items-center justify-center bg-gray-50 ">
+      <div className="w-full  bg-white  rounded-xl ">
         <PollViewer poll={poll} />
       </div>
     </div>
