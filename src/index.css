@@ -3,6 +3,7 @@
     src: url("../assets/fonts/PlayfairDisplay/static/PlayfairDisplay-Regular.ttf");
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
 @import "tailwindcss";
 
 @theme {
