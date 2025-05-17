@@ -5,9 +5,11 @@ import HomePage from "./pages/HomePage";
 import LoadingScreen from "./components/LoadingPage";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
-const AppRoutes = () => {
+const AppRoutes = ({ darkMode, toggleDarkMode }) => {
   const location = useLocation();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -26,11 +28,15 @@ const AppRoutes = () => {
     return <LoadingScreen onComplete={handleLoadingComplete} />;
   }
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/create" element={<CreatePollPage />} />
-      <Route path="/poll/:id" element={<PollPage />} />
-    </Routes>
+    <>
+     <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<CreatePollPage />} />
+        <Route path="/poll/:id" element={<PollPage />} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 
