@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex gap-4 mt-2 md:mt-0">
           <a href="/" className="hover:text-blue-600">Home</a>
           <a href="/create" className="hover:text-blue-600">Create Poll</a>
-          <a href="https://github.com/yourrepo" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
+          <a href="https://github.com/PriyanshuNaik27/poll-web" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
             GitHub
           </a>
         </div>
