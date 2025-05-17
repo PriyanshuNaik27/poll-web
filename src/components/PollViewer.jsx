@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FaPoll, FaChartPie, FaChartBar } from "react-icons/fa";
 import PieChart from "./PieChart";
 import GraphChart from "./GraphChart";
+import { toPng } from "html-to-image";
 
 const PollViewer = ({ poll }) => {
   const [selected, setSelected] = useState(null);
   const [votes, setVotes] = useState(poll.votes);
   const [chartType, setChartType] = useState("pie");
+  const chartRef = useRef();
 
   const vote = () => {
     if (selected === null) return;
@@ -18,6 +20,19 @@ const PollViewer = ({ poll }) => {
     const allPolls = JSON.parse(localStorage.getItem("polls") || "{}");
     allPolls[poll.id].votes = updatedVotes;
     localStorage.setItem("polls", JSON.stringify(allPolls));
+  };
+
+  const downloadChart = async () => {
+    if (chartRef.current === null) return;
+    try {
+      const dataUrl = await toPng(chartRef.current);
+      const link = document.createElement("a");
+      link.download = `${poll.question}-${chartType}-chart.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Error generating image:", err);
+    }
   };
 
   return (
@@ -47,9 +62,9 @@ const PollViewer = ({ poll }) => {
                   onChange={() => setSelected(i)}
                   className="mr-3 accent-[#05847D]"
                 />
-                <span className="text-base">{opt}</span>
+                <span className="text-2xl">{opt}</span>
               </div>
-              <span className="text-sm text-[#05847D]">
+              <span className="text-3xl text-[#05847D]">
                 {votes[i]} vote{votes[i] !== 1 ? "s" : ""}
               </span>
             </label>
@@ -58,7 +73,7 @@ const PollViewer = ({ poll }) => {
 
         <button
           onClick={vote}
-          className="w-full bg-[#05847D] hover:bg-[#223a39] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#05847D]/50"
+          className="w-full text-3xl bg-[#05847D] hover:bg-[#223a39] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#05847D]/50"
         >
           Submit Vote
         </button>
@@ -71,9 +86,9 @@ const PollViewer = ({ poll }) => {
           <div className="flex items-center gap-3">
             <div className="p-3 bg-[#05847D]/10 rounded-xl">
               {chartType === "pie" ? (
-                <FaChartPie className="text-[#05847D] text-2xl" />
+                <FaChartPie className="text-[#05847D] text-5xl" />
               ) : (
-                <FaChartBar className="text-[#05847D] text-2xl" />
+                <FaChartBar className="text-[#05847D] text-5xl" />
               )}
             </div>
             <h3 className="text-3xl font-bold text-gray-900 font-Playfair">
@@ -86,12 +101,12 @@ const PollViewer = ({ poll }) => {
           >
             {chartType === "pie" ? (
               <>
-                <FaChartBar className="text-lg" />
+                <FaChartBar className="text-5xl" />
                 <span>Bar View</span>
               </>
             ) : (
               <>
-                <FaChartPie className="text-lg" />
+                <FaChartPie className="text-5xl" />
                 <span>Pie View</span>
               </>
             )}
@@ -99,7 +114,10 @@ const PollViewer = ({ poll }) => {
         </div>
 
         {/* Chart Container */}
-        <div className="w-full h-[500px] flex items-center justify-center p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <div
+          ref={chartRef}
+          className="w-full h-[500px] flex items-center justify-center p-4 bg-gray-50 rounded-xl border border-gray-200"
+        >
           {chartType === "pie" ? (
             <PieChart
               options={poll.options}
@@ -117,15 +135,25 @@ const PollViewer = ({ poll }) => {
           )}
         </div>
 
-        {/* Legend/Footer */}
-        <div className="mt-6 text-sm text-gray-600 text-center">
+       
+
+        {/* Footer Info */}
+        <div className="mt-6 text-3xl font-bold text-gray-600 text-center">
           {votes.reduce((a, b) => a + b, 0)} total votes • {poll.options.length} options
         </div>
+
+         {/* Download Button */}
+        <button
+          onClick={downloadChart}
+          className="mt-20 text-2xl text-white bg-[#05847D] hover:bg-[#223a39] font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
+        >
+          Download Chart
+        </button>
       </div>
+
+      
     </div>
   );
 };
 
 export default PollViewer;
-
-
