@@ -1,13 +1,17 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+
+
 import AppRoutes from "./routes";
 import { useEffect, useState } from "react";
 
 function App() {
 
   const [darkMode, setDarkMode] = useState(() => {
-    
+     const savedMode = localStorage.getItem('darkMode');
+     if (savedMode !== null) {
+      return savedMode === 'true';
+    }
+    // Default to user's system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   useEffect(() => {

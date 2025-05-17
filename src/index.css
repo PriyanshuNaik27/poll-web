@@ -1,10 +1,12 @@
+
+
 @font-face {
     font-family:Playfair_Display;
     src: url("../assets/fonts/PlayfairDisplay/static/PlayfairDisplay-Regular.ttf");
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme {
     --font-Playfair: "Playfair_Display", serif;
