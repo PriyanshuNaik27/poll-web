@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSquarePollHorizontal,
-  faChartPie,
   faSquareShareNodes,
-  
+  faChartPie,
 } from '@fortawesome/free-solid-svg-icons';
 
 const images = [
@@ -17,21 +16,20 @@ const images = [
     description: 'Create your poll',
   },
   {
-    icon: faChartPie,
-    color: 'text-pink-600',
-    title: 'Step 3:',
-    description: 'View the results',
-  },
-  {
     icon: faSquareShareNodes,
     color: 'text-green-600',
     title: 'Step 2:',
     description: 'Share the poll link',
   },
-  
+  {
+    icon: faChartPie,
+    color: 'text-pink-600',
+    title: 'Step 3:',
+    description: 'View the results',
+  },
 ];
 
-const IconAnimation = () => {
+const IconAnimation2 = () => {
   const [index, setIndex] = useState(0);
 
 useEffect(() => {
@@ -44,7 +42,7 @@ useEffect(() => {
  
 
   return (
-    <div className="relative flex text-3xl items-center justify-center overflow-hidden w-full md:w-[280px] h-[140px]">
+    <div className="relative flex text-3xl items-center justify-center overflow-hidden w-full md:w-[400px] h-[140px]">
       {images.map((item, i) => {
         const pos = (i - index + images.length) % images.length;
 
@@ -54,7 +52,7 @@ useEffect(() => {
             className={`absolute w-[100px] h-[100px] rounded-full flex items-center justify-center ${item.color} bg-white shadow-md`}
             style={{ zIndex: images.length - pos }}
             animate={{
-              x: pos * 65 - 75,
+              x: pos * 600 - 300,
               scale: pos === 0 ? 1.3 : 1,
               opacity: 1,
             }}
@@ -68,4 +66,4 @@ useEffect(() => {
   );
 };
 
-export default IconAnimation;
+export default IconAnimation2;

@@ -10,18 +10,19 @@ const steps = [
     title: 'Step 1:',
     description: 'Create your poll',
   },
-  {
-    icon: faSquareShareNodes,
-    color: 'text-green-600 dark:text-green-400',
-    title: 'Step 2:',
-    description: 'Share the poll link',
-  },
-  {
+   {
     icon: faChartPie,
     color: 'text-pink-600 dark:text-pink-400',
     title: 'Step 3:',
     description: 'View the results',
   },
+  {
+    icon: faSquareShareNodes,
+    color: 'text-green-600 dark:text-green-400',
+    title: 'Step 2:',
+    description: 'Share the Chart ',
+  },
+ 
 ];
 
 const HowItWorkSection = () => {
