@@ -1,4 +1,14 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import meet from "../assets/meet.jpg";
+
+const shakeVariants = {
+    shake: {
+        x: [0, -10, 10, -10, 10, 0],
+        transition: { duration: 0.5, ease: "easeInOut" }
+    },
+    still: { x: 0 }
+};
 
 const TrendingSection = () => {
     const trendingQuestions = [
@@ -15,10 +25,13 @@ const TrendingSection = () => {
                 {/* Left Column - Image matching questions height */}
                 <div className="hidden md:block relative h-full min-h-[500px]">
                     <div className="sticky top-20 h-full rounded-3xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-700">
-                        <img
+                        <motion.img
                             src={meet}
                             alt="People discussing polls"
                             className="w-full h-full object-cover absolute inset-0"
+                            variants={shakeVariants}
+                            initial="still"
+                            whileHover="shake"
                         />
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#05847D]/90 dark:from-[#0D948D]/90 to-transparent p-6">
                             <p className="text-xl font-Playfair font-bold text-white italic leading-tight">
@@ -36,9 +49,12 @@ const TrendingSection = () => {
                     </h2>
                     
                     {trendingQuestions.map((question, index) => (
-                        <div
+                        <motion.div
                             key={index}
                             className="p-4 bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-[#05847D]/30 dark:hover:border-[#0D948D]/30 transition-all duration-300 hover:shadow-lg group hover:dark:bg-gray-700"
+                            variants={shakeVariants}
+                            initial="still"
+                            whileHover="shake"
                         >
                             <div className="flex items-start">
                                 <div className="flex-1">
@@ -48,7 +64,7 @@ const TrendingSection = () => {
                                     </h3>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
